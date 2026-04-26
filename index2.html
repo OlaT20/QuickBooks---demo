@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuickBooks Online – Video Walkthrough</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, Arial, sans-serif;
+      color: #fff;
+      background:
+        radial-gradient(circle at 95% 35%, rgba(9, 90, 255, .25), transparent 28%),
+        radial-gradient(circle at 52% 100%, rgba(255, 153, 0, .20), transparent 20%),
+        linear-gradient(135deg, #06101f 0%, #020713 55%, #07142a 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(0, 255, 255, .05) 1px, transparent 1px),
+        linear-gradient(rgba(0, 255, 255, .04) 1px, transparent 1px);
+      background-size: 42px 42px;
+      opacity: .12;
+      pointer-events: none;
+    }
+
+    .top-glow {
+      position: fixed;
+      top: 112px;
+      right: 0;
+      width: 45%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #ffb000, #fff2a8, #ff7a00);
+      box-shadow: 0 0 20px #ff9f00, 0 0 42px #ff7a00;
+      pointer-events: none;
+    }
+
+    header {
+      height: 116px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      border-bottom: 2px solid rgba(255, 170, 0, .65);
+      background: rgba(2, 8, 19, .72);
+      backdrop-filter: blur(12px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .brand { display: flex; align-items: center; gap: 18px; }
+    .logo {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 34px;
+      color: #ffbe17;
+      border: 5px solid #ffbe17;
+      box-shadow: 0 0 24px rgba(255, 174, 0, .5);
+    }
+    .brand h1 { font-size: 27px; letter-spacing: 1px; }
+    .brand p { color: #e9edf4; font-weight: 600; margin-top: 4px; }
+
+    nav { display: flex; gap: 38px; font-weight: 700; }
+    nav a { color: #f2f4f8; text-decoration: none; }
+    nav a.active { color: #ffc400; }
+
+    .back-btn {
+      border: 2px solid #e5aa1d;
+      color: #fff;
+      padding: 14px 27px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: inset 0 0 18px rgba(255,180,0,.1);
+    }
+
+    main { max-width: 1780px; margin: 0 auto; padding: 24px 36px 34px; position: relative; z-index: 1; }
+
+    .breadcrumb {
+      display: flex;
+      gap: 14px;
+      color: #00d9ff;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .breadcrumb span:last-child { color: #ffd100; }
+
+    .hero-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 52px;
+      line-height: .95;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    h2 span { color: #ffc400; text-shadow: 0 0 18px rgba(255,196,0,.35); }
+    .subtitle { font-size: 24px; color: #e2e7ef; margin-top: 8px; font-weight: 700; }
+
+    .stats { display: flex; gap: 38px; align-items: center; padding-top: 10px; }
+    .stat { display: flex; align-items: center; gap: 14px; min-width: 205px; }
+    .stat + .stat { border-left: 2px solid rgba(255,133,0,.6); padding-left: 38px; }
+    .icon { font-size: 42px; color: #ffbf00; }
+    .stat strong { color: #ffd000; font-size: 19px; display: block; }
+    .stat small { color: #e9edf4; font-size: 15px; }
+
+    .grid { display: grid; grid-template-columns: 1.45fr .95fr; gap: 30px; }
+
+    .panel {
+      border: 2px solid rgba(255, 157, 0, .8);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(5,18,40,.92), rgba(2,8,18,.82));
+      box-shadow: 0 0 26px rgba(255, 157, 0, .12), inset 0 0 35px rgba(0, 170, 255, .05);
+      overflow: hidden;
+    }
+
+    .video {
+      height: 500px;
+      position: relative;
+      background: #fff;
+      color: #222;
+      border-radius: 22px;
+      overflow: hidden;
+    }
+
+    .qb { display: grid; grid-template-columns: 165px 1fr; height: 100%; }
+    .qb-side { background: #101418; color: #fff; padding: 15px 22px; font-size: 13px; }
+    .qb-logo { color: #79c742; font-weight: 900; margin-bottom: 22px; }
+    .new-btn { border: 2px solid #d9dee5; border-radius: 20px; padding: 7px; text-align: center; margin-bottom: 18px; }
+    .qb-side div:not(.qb-logo):not(.new-btn) { margin: 14px 0; opacity: .9; font-weight: 700; }
+    .qb-main { background: #f5f7f9; padding: 28px; }
+    .qb-title { font-size: 22px; font-weight: 800; margin-bottom: 26px; color: #333; }
+    .cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 18px; }
+    .card { height: 110px; background: #fff; border: 1px solid #d8dee6; border-radius: 10px; display: grid; place-items: center; color: #4f6775; font-size: 13px; font-weight: 700; }
+    .dashboard { display: grid; grid-template-columns: 1.2fr 1fr .8fr; gap: 18px; }
+    .dash-card { background: #fff; min-height: 185px; border-radius: 12px; border: 1px solid #d8dee6; padding: 18px; }
+    .bar { height: 18px; border-radius: 9px; background: linear-gradient(90deg, #f39a00 45%, #e5e9ee 45%); margin: 18px 0; }
+    .bar.green { background: linear-gradient(90deg, #58a800 70%, #e5e9ee 70%); }
+    .donut { width: 90px; height: 90px; border-radius: 50%; margin: 30px auto; background: conic-gradient(#00a9a9 0 72%, #d7dde6 72%); position: relative; }
+    .donut::after { content: ""; position: absolute; inset: 25px; background: #fff; border-radius: 50%; }
+
+    .play-main {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.55));
+    }
+    .play-circle {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background: rgba(5,13,30,.9);
+      border: 4px solid #f5aa00;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 52px;
+      box-shadow: 0 0 18px rgba(0,0,0,.45);
+    }
+    .controls { position: absolute; left: 35px; right: 35px; bottom: 18px; display: flex; align-items: center; gap: 18px; color: #fff; font-size: 26px; }
+    .track { flex: 1; height: 5px; background: #d9dce2; border-radius: 10px; position: relative; }
+    .track::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 32%; background: #ffc000; border-radius: inherit; }
+    .track::after { content: ""; position: absolute; left: 31%; top: -6px; width: 17px; height: 17px; background: #ffc000; border-radius: 50%; }
+    .time { font-size: 15px; white-space: nowrap; }
+
+    .learn { margin-top: 15px; padding: 20px 24px; }
+    .section-title { color: #ffd000; font-size: 21px; font-weight: 900; text-transform: uppercase; margin-bottom: 16px; }
+    .learn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .learn-item { display: flex; align-items: center; gap: 18px; font-weight: 700; color: #e9edf4; min-height: 58px; }
+    .learn-item + .learn-item { border-left: 2px solid rgba(255,137,0,.55); padding-left: 22px; }
+    .learn-item .icon { font-size: 42px; }
+
+    .playlist { padding: 14px 16px 20px; height: 500px; }
+    .playlist h3, .about h3 { color: #ffd000; font-size: 22px; text-transform: uppercase; display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+    .video-list { max-height: 420px; overflow-y: auto; padding-right: 12px; }
+    .video-list::-webkit-scrollbar { width: 6px; }
+    .video-list::-webkit-scrollbar-thumb { background: #abb2bd; border-radius: 8px; }
+    .video-item { display: grid; grid-template-columns: 118px 38px 1fr 58px 22px; align-items: center; gap: 12px; padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,.1); border-radius: 10px; }
+    .video-item.active { border: 2px solid #f3c000; box-shadow: 0 0 18px rgba(255,190,0,.4); background: rgba(255,190,0,.06); }
+    .thumb { height: 62px; border-radius: 6px; background: linear-gradient(135deg, #fff 0 70%, #e6eef7); border: 1px solid #cfd6df; position: relative; }
+    .thumb::after { content: "▶"; position: absolute; inset: 0; margin: auto; width: 38px; height: 38px; border-radius: 50%; background: rgba(0,0,0,.8); color: #fff; display: grid; place-items: center; }
+    .num { color: #ffd000; font-weight: 900; font-size: 19px; }
+    .video-item strong { font-size: 17px; display: block; margin-bottom: 5px; }
+    .video-item small { color: #e9edf4; font-size: 14px; }
+    .duration { color: #e8edf5; }
+    .bars { color: #ffd000; font-size: 20px; }
+
+    .about { margin-top: 15px; padding: 14px 26px; }
+    .about-row { display: grid; grid-template-columns: 135px 14px 1fr; gap: 10px; margin: 12px 0; align-items: start; }
+    .about-row b { color: #ffd000; }
+    .about-row span { color: #e9edf4; }
+
+    .actions { display: flex; justify-content: center; align-items: center; gap: 100px; margin-top: 14px; }
+    .btn { border: 2px solid rgba(255,146,0,.8); color: #fff; text-decoration: none; font-weight: 800; font-size: 20px; border-radius: 20px; padding: 18px 34px; min-width: 300px; text-align: center; background: rgba(4,15,34,.78); }
+    .btn.primary { color: #111; background: linear-gradient(180deg, #ffe97b, #ffb21b); font-size: 28px; min-width: 520px; box-shadow: 0 0 30px rgba(255,166,0,.35); }
+
+    @media (max-width: 1100px) {
+      header, .hero-row, .stats, .actions { flex-direction: column; height: auto; align-items: flex-start; }
+      header { gap: 20px; padding: 22px; }
+      nav { flex-wrap: wrap; gap: 16px; }
+      .grid { grid-template-columns: 1fr; }
+      .stats { gap: 14px; }
+      .stat + .stat { border-left: 0; padding-left: 0; }
+      h2 { font-size: 40px; }
+      .learn-grid { grid-template-columns: 1fr; }
+      .learn-item + .learn-item { border-left: 0; padding-left: 0; }
+      .actions { gap: 16px; align-items: stretch; }
+      .btn, .btn.primary { min-width: auto; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-glow"></div>
+
+  <header>
+    <div class="brand">
+      <div class="logo">OD</div>
+      <div>
+        <h1>OLATUNJI C. DEAN</h1>
+        <p>Accounting | Data | Systems Optimization</p>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a class="active" href="#">Projects</a>
+      <a href="#">Case Studies</a>
+      <a href="#">About Me</a>
+      <a href="#">Skills</a>
+      <a href="#">Hire Me</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <a class="back-btn" href="#">← Back to Projects</a>
+  </header>
+
+  <main>
+    <div class="breadcrumb">
+      <span>Projects</span><span>&gt;</span><span>QuickBooks Online</span><span>&gt;</span><span>Video Walkthrough</span>
+    </div>
+
+    <section class="hero-row">
+      <div>
+        <h2>VIDEO <span>WALKTHROUGH</span></h2>
+        <p class="subtitle">QuickBooks Online – Entering Transactions</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="icon">◴</div><div><strong>02:15</strong><small>Total Length</small></div></div>
+        <div class="stat"><div class="icon">▟</div><div><strong>Step-by-Step</strong><small>Detailed Explanation</small></div></div>
+        <div class="stat"><div class="icon">◎</div><div><strong>Real Insights</strong><small>Practical Impact</small></div></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div>
+        <div class="panel video">
+          <div class="qb">
+            <aside class="qb-side">
+              <div class="qb-logo">● intuit<br>quickbooks</div>
+              <div class="new-btn">+ New</div>
+              <div>Dashboard</div><div>Banking</div><div>Sales</div><div>Expenses</div><div>Employees</div><div>Reports</div><div>Taxes</div><div>Accounting</div><div>My Accountant</div><div>Apps</div>
+            </aside>
+            <div class="qb-main">
+              <div class="qb-title">Craig's Design and Landscaping Services</div>
+              <div class="cards">
+                <div class="card">Add customer</div><div class="card">Add estimate</div><div class="card">Add invoice</div><div class="card">Receive payment</div><div class="card">Run report</div>
+              </div>
+              <div class="dashboard">
+                <div class="dash-card"><b>INVOICES</b><div class="bar"></div><b>$1,525.50</b><div class="bar green"></div><b>$2,062.52</b></div>
+                <div class="dash-card"><b>EXPENSES</b><div class="donut"></div></div>
+                <div class="dash-card"><b>BANK ACCOUNTS</b><br><br>Checking<br>$12,435.65<br><br>Savings<br>$3,287.43<br><br>Mastercard<br>-$3,435.65</div>
+              </div>
+            </div>
+          </div>
+          <div class="play-main"><div class="play-circle">▶</div></div>
+          <div class="controls"><span>▶</span><span>▸|</span><span>●</span><div class="track"></div><span class="time">00:00 / 02:15</span><span>⚙</span><span>⛶</span></div>
+        </div>
+
+        <div class="panel learn">
+          <div class="section-title">WHAT YOU’LL LEARN</div>
+          <div class="learn-grid">
+            <div class="learn-item"><div class="icon">▤</div><div>Enter transactions<br>accurately</div></div>
+            <div class="learn-item"><div class="icon">▣</div><div>Manage expenses<br>with confidence</div></div>
+            <div class="learn-item"><div class="icon">▥</div><div>Reconcile bank<br>accounts</div></div>
+            <div class="learn-item"><div class="icon">▥</div><div>Generate reports<br>& gain insights</div></div>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="panel playlist">
+          <h3>▣ Video Playlist</h3>
+          <div class="video-list">
+            <div class="video-item active"><div class="thumb"></div><div class="num">01</div><div><strong>Project Overview</strong><small>Introduction & Objectives</small></div><div class="duration">01:02</div><div class="bars">▮</div></div>
+            <div class="video-item"><div class="thumb"></div><div class="num">02</div><div><strong>Entering Transactions</strong><small>Sales, Invoices & Payments</small></div><div class="duration">02:15</div><div></div></div>
+            <div class="video-item"><div class="thumb"></div><div class="num">03</div><div><strong>Recording Expenses</strong><small>Bills, Expenses & Categories</small></div><div class="duration">03:30</div><div></div></div>
+            <div class="video-item"><div class="thumb"></div><div class="num">04</div><div><strong>Bank Reconciliation</strong><small>Matching & Reconciling</small></div><div class="duration">02:58</div><div></div></div>
+            <div class="video-item"><div class="thumb"></div><div class="num">05</div><div><strong>Reports & Insights</strong><small>Financial Reports & Analysis</small></div><div class="duration">01:00</div><div></div></div>
+          </div>
+        </div>
+
+        <div class="panel about">
+          <h3>▣ About This Project</h3>
+          <div class="about-row"><b>Project Name</b><b>:</b><span>QuickBooks Online – Entering Transactions</span></div>
+          <div class="about-row"><b>Tools Used</b><b>:</b><span>QuickBooks Online</span></div>
+          <div class="about-row"><b>Objective</b><b>:</b><span>Learn how to accurately enter and manage transactions</span></div>
+          <div class="about-row"><b>Outcome</b><b>:</b><span>Accurate financial tracking and reporting</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="actions">
+      <a class="btn" href="#">▦ &nbsp; View All Projects</a>
+      <a class="btn primary" href="#">▶ &nbsp; Watch More Projects &nbsp; →</a>
+      <a class="btn" href="#">▤ &nbsp; View Project Details</a>
+    </section>
+  </main>
+</body>
+</html>
