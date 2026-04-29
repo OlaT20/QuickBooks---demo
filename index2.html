@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olatunji C. Dean | Video Walkthrough</title>
+  <style>
+
+    :root {
+      --bg: #031025;
+      --panel: rgba(4, 19, 42, .78);
+      --panel-2: rgba(3, 14, 32, .9);
+      --text: #f5f7ff;
+      --muted: #c9d0dd;
+      --gold: #ffc21a;
+      --gold-2: #ff8a00;
+      --cyan: #00d9ff;
+      --line: rgba(255, 178, 22, .65);
+      --soft: rgba(255, 194, 26, .12);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: #020713;
+      overflow: hidden;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    body::before {
+      background:
+        radial-gradient(circle at 100% 12%, rgba(255, 136, 0, .35), transparent 20%),
+        radial-gradient(circle at 0% 75%, rgba(0, 79, 255, .32), transparent 32%),
+        radial-gradient(circle at 88% 85%, rgba(0, 101, 255, .45), transparent 23%),
+        linear-gradient(125deg, #02091b 0%, #051936 50%, #020713 100%);
+    }
+
+    body::after {
+      opacity: .35;
+      background-image:
+        linear-gradient(120deg, transparent 0 48%, rgba(255, 174, 0, .32) 49%, transparent 50% 100%),
+        linear-gradient(35deg, transparent 0 48%, rgba(0, 174, 255, .16) 49%, transparent 50% 100%);
+      background-size: 760px 520px, 640px 480px;
+      z-index: -1;
+    }
+
+    /* CANVA-STYLE FULLSCREEN SLIDE
+       The slide always stays fully visible: 16:9, centered, no page scroll. */
+    .page {
+      width: min(100vw, calc(100vh * 16 / 9));
+      height: min(100vh, calc(100vw * 9 / 16));
+      aspect-ratio: 16 / 9;
+      margin: 0 auto;
+      padding: 2.2% 4.6% 1.6%;
+      display: grid;
+      grid-template-rows: 13.5% 1fr;
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 2.1%;
+      padding-bottom: .9%;
+      border-bottom: 2px solid rgba(255, 194, 26, .72);
+      box-shadow: 0 14px 24px -22px var(--gold);
+      min-height: 0;
+    }
+
+    .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .logo {
+      width: clamp(54px, 5.4vw, 82px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: clamp(20px, 2vw, 31px);
+      letter-spacing: -2px;
+      color: var(--gold);
+      border: 4px solid var(--gold);
+      box-shadow: 0 0 22px rgba(255, 194, 26, .35);
+      flex: 0 0 auto;
+    }
+    .brand h1 { margin: 0; font-size: clamp(20px, 2vw, 33px); line-height: 1; letter-spacing: .5px; white-space: nowrap; }
+    .brand p { margin: 6px 0 0; color: var(--muted); font-size: clamp(12px, .95vw, 18px); font-weight: 650; white-space: nowrap; }
+
+    nav { display: flex; justify-content: center; gap: clamp(14px, 1.55vw, 31px); font-weight: 750; font-size: clamp(12px, .95vw, 17px); white-space: nowrap; }
+    nav a { color: var(--text); text-decoration: none; opacity: .9; }
+    nav a.active { color: var(--gold); }
+
+    .back {
+      color: var(--text);
+      text-decoration: none;
+      border: 2px solid var(--gold);
+      border-radius: 999px;
+      padding: .7em 1.55em;
+      font-size: clamp(12px, .95vw, 18px);
+      font-weight: 800;
+      background: rgba(255, 170, 0, .05);
+      box-shadow: inset 0 0 16px rgba(255, 194, 26, .12);
+      white-space: nowrap;
+    }
+
+    main {
+      min-height: 0;
+      display: grid;
+      grid-template-rows: 4.8% 12.5% 1fr 10%;
+      gap: 1.7%;
+      overflow: hidden;
+      padding-top: 1.1%;
+    }
+
+    .crumbs { color: var(--cyan); display: flex; gap: 10px; align-items: center; font-weight: 800; font-size: clamp(11px, .85vw, 15px); min-height: 0; }
+    .crumbs span:last-child { color: var(--gold); }
+
+    .hero-row {
+      display: grid;
+      grid-template-columns: 1.23fr .9fr;
+      align-items: center;
+      gap: 2%;
+      min-height: 0;
+    }
+
+    .title h2 {
+      margin: 0 0 .6%;
+      font-size: clamp(34px, 4.1vw, 68px);
+      line-height: .9;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+    }
+    .title h2 span { color: var(--gold); }
+    .title p { margin: 0; font-size: clamp(15px, 1.28vw, 24px); font-weight: 800; color: #f2f3f7; }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2%; }
+    .stat { display: flex; align-items: center; gap: 12px; padding-inline: 14px; border-left: 2px solid rgba(255, 138, 0, .65); }
+    .stat:first-child { border-left: 0; }
+    .icon { color: var(--gold); font-size: clamp(28px, 2.4vw, 48px); line-height: 1; }
+    .stat strong { display: block; color: var(--gold); font-size: clamp(12px, .95vw, 17px); }
+    .stat small { color: var(--muted); font-size: clamp(11px, .8vw, 15px); font-weight: 700; }
+
+    .content {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1.62fr) minmax(300px, .98fr);
+      gap: 2.4%;
+      align-items: stretch;
+      overflow: hidden;
+    }
+
+    .left, .right { min-height: 0; overflow: hidden; }
+    .left { display: grid; grid-template-rows: 72% 1fr; gap: 4.2%; }
+    .right { display: grid; grid-template-rows: 62% 1fr; gap: 4%; }
+
+    .video-card,
+    .panel,
+    .learn,
+    .about {
+      border: 2px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(6, 24, 54, .88), rgba(2, 11, 27, .82));
+      box-shadow: 0 0 22px rgba(255, 166, 0, .13), inset 0 0 22px rgba(0, 153, 255, .04);
+      min-height: 0;
+    }
+
+    .video-card {
+      position: relative;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .fake-screen {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #111 0 15%, #f4f6f9 15% 100%);
+      color: #1b2430;
+      overflow: hidden;
+    }
+    .fake-sidebar { position: absolute; inset: 0 auto 0 0; width: 15%; background: #111; color: white; padding: 3% 2%; font-size: clamp(10px, .8vw, 13px); line-height: 2.25; }
+    .fake-sidebar b { color: #7bd35b; display: block; margin-bottom: 8px; }
+    .fake-dashboard { position: absolute; left: 15%; right: 0; top: 0; bottom: 0; padding: 3.2% 4%; }
+    .dash-head { height: 11%; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #d8dde5; font-weight: 800; font-size: clamp(14px, 1.15vw, 19px); }
+    .cards { display: grid; grid-template-columns: 1.7fr 1fr; gap: 4%; margin-top: 3%; }
+    .box { background: white; border: 1px solid #d7dce4; border-radius: 9px; min-height: 88px; padding: 4%; box-shadow: 0 2px 12px rgba(0,0,0,.05); font-size: clamp(11px, .9vw, 16px); }
+    .box.tall { min-height: 160px; }
+    .bars { display: grid; gap: 12px; margin-top: 15px; }
+    .bar { height: 15px; border-radius: 999px; background: #dce1e9; overflow: hidden; }
+    .bar::before { content: ""; display: block; width: var(--w, 65%); height: 100%; background: linear-gradient(90deg, #f5a000, #7ac70c); }
+    .donut { width: 42%; max-width: 100px; aspect-ratio: 1; border-radius: 50%; margin: 18px auto; background: conic-gradient(#00a5a8 0 72%, #e7ebf0 72%); position: relative; }
+    .donut::after { content: ""; position: absolute; inset: 20%; background: white; border-radius: 50%; }
+
+    .play {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(70px, 6.5vw, 108px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: rgba(3, 16, 37, .9);
+      border: 4px solid var(--gold);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 0 22px rgba(0,0,0,.45);
+      z-index: 5;
+    }
+    .play::before { content: ""; border-left: 26px solid white; border-top: 18px solid transparent; border-bottom: 18px solid transparent; margin-left: 8px; }
+    .controls { position: absolute; left: 4%; right: 4%; bottom: 5%; height: 34px; display: grid; grid-template-columns: auto auto auto 1fr auto auto; align-items: center; gap: 14px; color: white; z-index: 6; filter: drop-shadow(0 2px 3px black); font-size: clamp(11px, .9vw, 16px); }
+    .progress { height: 6px; border-radius: 999px; background: rgba(255,255,255,.7); position: relative; }
+    .progress::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 48%; background: var(--gold); border-radius: inherit; }
+    .progress::after { content: ""; position: absolute; left: 47%; top: 50%; width: 14px; aspect-ratio: 1; transform: translate(-50%,-50%); border-radius: 50%; background: var(--gold); }
+    .fade { position: absolute; inset: auto 0 0 0; height: 38%; background: linear-gradient(transparent, rgba(0,0,0,.58)); z-index: 4; }
+
+    .panel { padding: 3.3% 4%; overflow: hidden; }
+    .panel h3, .learn h3, .about h3 { margin: 0 0 2.5%; color: var(--gold); text-transform: uppercase; font-size: clamp(15px, 1.1vw, 22px); display: flex; align-items: center; gap: 10px; }
+
+    .playlist { display: grid; gap: 6px; height: calc(100% - 30px); overflow: hidden; padding-right: 0; }
+    .item { display: grid; grid-template-columns: 25% 8% 1fr auto; gap: 3%; align-items: center; padding: 1.5% 2%; border-bottom: 1px solid rgba(255,255,255,.09); border-radius: 12px; min-height: 0; }
+    .item.active { border: 2px solid var(--gold); box-shadow: 0 0 18px rgba(255, 194, 26, .28); }
+    .thumb { height: clamp(40px, 3.4vw, 58px); border-radius: 4px; background: linear-gradient(90deg, #111 0 20%, #f4f6f9 20%); border: 1px solid #ddd; position: relative; }
+    .thumb::after { content: "▶"; position: absolute; inset: 50% auto auto 50%; transform: translate(-50%,-50%); width: 34px; aspect-ratio:1; border-radius:50%; background:#0a1527; color:white; display:grid; place-items:center; font-size: 14px; }
+    .num { color: var(--gold); font-weight: 900; font-size: clamp(16px, 1.3vw, 22px); }
+    .item b { display: block; font-size: clamp(12px, .9vw, 17px); }
+    .item small { display: block; color: var(--muted); margin-top: 4px; font-weight: 650; font-size: clamp(10px, .75vw, 14px); }
+    .time { color: var(--muted); font-weight: 800; font-size: clamp(11px, .85vw, 15px); }
+
+    .learn { padding: 2.3% 3.5%; overflow: hidden; }
+    .learn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2%; height: calc(100% - 32px); align-items: center; }
+    .learn-cell { display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: center; padding-right: 12px; border-right: 2px solid rgba(255, 138, 0, .55); color: var(--text); font-weight: 750; font-size: clamp(11px, .82vw, 15px); }
+    .learn-cell:last-child { border-right: 0; }
+    .learn-cell .icon { font-size: clamp(28px, 2vw, 38px); }
+
+    .about { padding: 4% 5%; overflow: hidden; }
+    .about dl { display: grid; grid-template-columns: 32% 1fr; gap: 8px 14px; margin: 0; font-weight: 750; font-size: clamp(11px, .82vw, 15px); }
+    .about dt { color: var(--gold); }
+    .about dd { margin: 0; color: #eef2fb; }
+
+    .actions { display: grid; grid-template-columns: minmax(180px, 23%) minmax(260px, 34%) minmax(180px, 23%); justify-content: center; gap: 5%; align-items: center; min-height: 0; }
+    .btn { height: 72%; border-radius: 999px; border: 2px solid var(--gold); color: var(--text); background: rgba(8, 24, 48, .9); display: flex; align-items: center; justify-content: center; gap: 12px; padding: .6em 1.3em; text-decoration: none; font-weight: 900; font-size: clamp(13px, 1.15vw, 22px); box-shadow: inset 0 0 18px rgba(255, 194, 26, .09); white-space: nowrap; }
+    .btn.primary { color: #071225; background: linear-gradient(90deg, #ffe889, #ffad31); border-color: #ffc73a; box-shadow: 0 0 28px rgba(255, 147, 0, .35); font-size: clamp(16px, 1.55vw, 28px); }
+
+    @media (max-aspect-ratio: 4/3) {
+      nav { display: none; }
+      .topbar { grid-template-columns: 1fr auto; }
+      .hero-row, .content { grid-template-columns: 1fr; }
+      main { grid-template-rows: auto auto 1fr auto; }
+      .left { grid-template-rows: 68% 1fr; }
+      .right { display: none; }
+      .actions { grid-template-columns: 1fr; gap: 8px; }
+      .actions .btn:not(.primary) { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">OD</div>
+        <div>
+          <h1>OLATUNJI C. DEAN</h1>
+          <p>Accounting | Data | Systems Optimization</p>
+        </div>
+      </div>
+      <nav aria-label="Primary navigation">
+        <a href="#">Home</a><a class="active" href="#">Projects</a><a href="#">Case Studies</a><a href="#">About Me</a><a href="#">Skills</a><a href="#">Hire Me</a><a href="#">Contact</a>
+      </nav>
+      <a class="back" href="#">← Back to Projects</a>
+    </header>
+
+    <main>
+      <div class="crumbs"><span>Projects</span><span>›</span><span>QuickBooks Online</span><span>›</span><span>Video Walkthrough</span></div>
+
+      <section class="hero-row">
+        <div class="title">
+          <h2>Video <span>Walkthrough</span></h2>
+          <p>QuickBooks Online – Entering Transactions</p>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="icon">◷</div><div><strong>02:15</strong><small>Total Length</small></div></div>
+          <div class="stat"><div class="icon">▟</div><div><strong>Step-by-Step</strong><small>Detailed Explanation</small></div></div>
+          <div class="stat"><div class="icon">◎</div><div><strong>Real Insights</strong><small>Practical Impact</small></div></div>
+        </div>
+      </section>
+
+      <section class="content">
+        <div class="left">
+          <article class="video-card" aria-label="Video walkthrough player mockup">
+            <div class="fake-screen">
+              <aside class="fake-sidebar"><b>quickbooks</b>Dashboard<br>Banking<br>Sales<br>Expenses<br>Employees<br>Reports<br>Taxes<br>Accounting<br>Apps</aside>
+              <div class="fake-dashboard">
+                <div class="dash-head">⌂ Craig's Design and Landscaping Services</div>
+                <div class="cards">
+                  <div class="box"><b>SHORTCUTS</b><div style="display:flex;justify-content:space-around;margin-top:28px;color:#6f7d90">Add customer&nbsp;&nbsp; Add invoice&nbsp;&nbsp; Add expense&nbsp;&nbsp; Run report</div></div>
+                  <div class="box"><b>BANK ACCOUNTS</b><p>Checking &nbsp; $12,435.45</p><p>Savings &nbsp; $3,287.43</p></div>
+                  <div class="box tall"><b>INVOICES</b><div class="bars"><div class="bar" style="--w:37%"></div><div class="bar" style="--w:72%"></div></div><h3>$3,756.02</h3></div>
+                  <div class="box tall"><b>EXPENSES</b><div class="donut"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="fade"></div>
+            <div class="play"></div>
+            <div class="controls"><span>▶</span><span>▮▶</span><span>🔊</span><div class="progress"></div><span>00:00 / 02:15</span><span>⚙ ⛶</span></div>
+          </article>
+
+          <section class="learn">
+            <h3>What You’ll Learn</h3>
+            <div class="learn-grid">
+              <div class="learn-cell"><span class="icon">▤</span><span>Enter transactions accurately</span></div>
+              <div class="learn-cell"><span class="icon">▰</span><span>Manage expenses with confidence</span></div>
+              <div class="learn-cell"><span class="icon">▥</span><span>Reconcile bank accounts</span></div>
+              <div class="learn-cell"><span class="icon">▥</span><span>Generate reports & gain insights</span></div>
+            </div>
+          </section>
+        </div>
+
+        <aside class="right">
+          <section class="panel">
+            <h3>▣ Video Playlist</h3>
+            <div class="playlist">
+              <div class="item active"><div class="thumb"></div><div class="num">01</div><div><b>Project Overview</b><small>Introduction & Objectives</small></div><div class="time">01:02 ▮</div></div>
+              <div class="item"><div class="thumb"></div><div class="num">02</div><div><b>Entering Transactions</b><small>Sales, Invoices & Payments</small></div><div class="time">02:15</div></div>
+              <div class="item"><div class="thumb"></div><div class="num">03</div><div><b>Recording Expenses</b><small>Bills, Expenses & Categories</small></div><div class="time">03:30</div></div>
+              <div class="item"><div class="thumb"></div><div class="num">04</div><div><b>Bank Reconciliation</b><small>Matching & Reconciling</small></div><div class="time">02:58</div></div>
+              <div class="item"><div class="thumb"></div><div class="num">05</div><div><b>Reports & Insights</b><small>Financial Reports & Analysis</small></div><div class="time">01:00</div></div>
+            </div>
+          </section>
+
+          <section class="about">
+            <h3>▣ About This Project</h3>
+            <dl>
+              <dt>Project Name</dt><dd>QuickBooks Online – Entering Transactions</dd>
+              <dt>Tools Used</dt><dd>QuickBooks Online</dd>
+              <dt>Objective</dt><dd>Learn how to accurately enter and manage transactions</dd>
+              <dt>Outcome</dt><dd>Accurate financial tracking and reporting</dd>
+            </dl>
+          </section>
+        </aside>
+      </section>
+
+      <section class="actions">
+        <a class="btn" href="#">▦ View All Projects</a>
+        <a class="btn primary" href="#">▶ Watch More Projects →</a>
+        <a class="btn" href="#">▤ View Project Details</a>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
